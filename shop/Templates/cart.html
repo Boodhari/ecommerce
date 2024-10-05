@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<h1>Your Cart</h1>
+<div id="cart-content">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>image</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Bixi Lacagta</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td><img src="{{item.product.photo.url}}" alt="" width="100px"></td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.product.price }}</td>
+                <td>${{ item.get_total_price }}</td>
+                <td>
+                    <button class="btn btn-success">
+                    <a href="https://forms.gle/SH6UjZ3LZAPKqera6"
+                    class="text-white text-decoration-none">Bixi Lacagta</a>
+                </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Total: ${{ total }}</h3>
+    <a href="{% url 'product_list' %}" class="btn btn-success">Continue Shopping</a>
+</div>
+{% endblock %}
